@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-multipart
+groq
+python-dotenv
+pydantic
+pytest
+httpx
+sqlalchemy
