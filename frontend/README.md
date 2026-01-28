@@ -1,6 +1,6 @@
 # Flux CRM - Frontend
 
-Modern React-based Progressive Web App (PWA) for voice-first customer relationship management. Features a beautiful UI with smooth animations, voice recording capabilities, and real-time data management.
+Modern React-based Progressive Web App (PWA) for voice-first customer relationship management. Features offline support, installability on all platforms, beautiful UI with smooth animations, voice recording capabilities, and real-time data management.
 
 ## 🌟 Features
 
@@ -8,8 +8,10 @@ Modern React-based Progressive Web App (PWA) for voice-first customer relationsh
 - **AI-Powered Data Display**: Automatically extracted customer information with inline editing
 - **Interactive Dashboard**: View, search, and manage all customer interactions
 - **Smooth Animations**: Framer Motion powered transitions and micro-interactions
-- **Progressive Web App**: Installable on mobile devices with offline support
-- **Android Ready**: Built with Capacitor for native Android deployment
+- **Progressive Web App**: Installable on desktop and mobile with native-like experience
+- **Offline Support**: Full offline functionality with automatic sync when back online
+- **Install Prompts**: Smart prompts to install the app on user's device
+- **Update Notifications**: Automatic update detection and user-friendly update prompts
 - **Responsive Design**: Beautiful UI that works on all screen sizes
 - **Dark Mode Optimized**: Modern gradient-based design system
 
@@ -58,12 +60,9 @@ The app will be available at `http://localhost:5173`
 ### HTTP & Data
 - **axios** (^1.7.2) - HTTP client for API calls
 
-### PWA & Mobile
+### PWA
 - **vite-plugin-pwa** (^0.20.0) - PWA plugin for Vite
 - **workbox-window** (^7.1.0) - Service worker management
-- **@capacitor/core** (^8.0.1) - Native mobile runtime
-- **@capacitor/android** (^8.0.1) - Android platform support
-- **@capacitor/cli** (^7.4.5) - Capacitor CLI tools
 
 ### Build Tools
 - **@vitejs/plugin-react** (^4.3.1) - React plugin for Vite
@@ -75,21 +74,26 @@ The app will be available at `http://localhost:5173`
 ```
 frontend/
 ├── public/              # Static assets
-│   └── manifest.json   # PWA manifest
+│   ├── manifest.json   # PWA manifest
+│   ├── pwa-192x192.png # PWA icon 192x192
+│   ├── pwa-512x512.png # PWA icon 512x512
+│   ├── apple-touch-icon.png # iOS icon
+│   └── favicon.ico     # Browser favicon
 ├── src/
 │   ├── components/     # React components
-│   │   ├── Recorder.jsx       # Voice recording interface
-│   │   ├── DataDisplay.jsx    # Customer data display/edit
-│   │   └── Dashboard.jsx      # History & management
+│   │   ├── Recorder.jsx         # Voice recording interface
+│   │   ├── DataDisplay.jsx      # Customer data display/edit
+│   │   ├── Dashboard.jsx        # History & management
+│   │   ├── InstallPrompt.jsx    # PWA install prompt
+│   │   ├── OfflineIndicator.jsx # Offline status indicator
+│   │   └── UpdatePrompt.jsx     # Update notification
 │   ├── App.jsx         # Main application component
 │   ├── App.css         # Component styles
 │   ├── index.css       # Global styles & design system
 │   └── main.jsx        # Application entry point
-├── android/            # Capacitor Android project
 ├── dist/               # Production build output
 ├── index.html          # HTML entry point
 ├── vite.config.js      # Vite configuration
-├── capacitor.config.json # Capacitor configuration
 ├── postcss.config.js   # PostCSS configuration
 └── package.json        # Dependencies and scripts
 ```
@@ -114,49 +118,36 @@ npm run preview
 ```
 Locally preview the production build before deployment.
 
-## 📱 Building for Android
+## 📱 Installing the PWA
 
-### Prerequisites
-- Android Studio installed
-- Java Development Kit (JDK) 11 or higher
+### On Desktop (Chrome, Edge, Brave)
 
-### Build Steps
+1. Visit the app in your browser
+2. Look for the install icon (⊕) in the address bar
+3. Click "Install" when prompted
+4. The app will open in its own window
 
-1. **Build the web app**:
-```bash
-npm run build
-```
+### On Mobile (Android)
 
-2. **Sync with Capacitor**:
-```bash
-npx cap sync android
-```
+1. Open the app in Chrome
+2. Tap the menu (three dots)
+3. Select "Add to Home Screen" or "Install App"
+4. The app will be added to your home screen with an icon
 
-3. **Open in Android Studio**:
-```bash
-npx cap open android
-```
+### On Mobile (iOS/Safari)
 
-4. **Build APK/AAB** in Android Studio or via command line:
-```bash
-cd android
-./gradlew assembleRelease  # For APK
-./gradlew bundleRelease    # For AAB (Play Store)
-```
+1. Open the app in Safari
+2. Tap the Share button (square with arrow)
+3. Scroll down and tap "Add to Home Screen"
+4. Tap "Add" to confirm
 
-### Update Capacitor Configuration
+### Features After Installation
 
-Edit `capacitor.config.json` to customize:
-```json
-{
-  "appId": "com.yourcompany.fluxcrm",
-  "appName": "Flux CRM",
-  "webDir": "dist",
-  "server": {
-    "androidScheme": "https"
-  }
-}
-```
+- Opens in standalone mode (no browser UI)
+- App icon on home screen/desktop
+- Works offline with cached data
+- Receives update notifications
+- Fast, native-like performance
 
 ## 🎨 Design System
 
@@ -295,11 +286,7 @@ npm install
 - Ensure HTTPS (required for getUserMedia)
 - Test in supported browsers (Chrome, Edge, Safari)
 
-### Android Build Issues
-```bash
-npx cap sync android
-npx cap update android
-```
+
 
 ## 🎯 Performance Optimization
 
@@ -311,9 +298,8 @@ npx cap update android
 
 ## 🔮 Future Enhancements
 
-- [ ] iOS support via Capacitor
 - [ ] Push notifications
-- [ ] Background sync
+- [ ] Background sync improvements
 - [ ] Advanced search filters
 - [ ] Export functionality (CSV, PDF)
 - [ ] Multi-language support

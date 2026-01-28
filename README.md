@@ -1,6 +1,6 @@
 # Flux CRM
 
-A modern, voice-first CRM application that uses AI to transcribe and extract customer information from voice recordings. Built with React (frontend) and FastAPI (backend), this Progressive Web App (PWA) enables seamless customer relationship management through voice interactions.
+A modern, voice-first CRM Progressive Web App (PWA) that uses AI to transcribe and extract customer information from voice recordings. Built with React (frontend) and FastAPI (backend), this installable web application works seamlessly on desktop and mobile devices with offline support.
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
@@ -11,8 +11,8 @@ A modern, voice-first CRM application that uses AI to transcribe and extract cus
 - **Intelligent Data Extraction**: Automatically extract customer information (name, phone, address, city, locality) from transcripts
 - **Interactive Dashboard**: View, edit, and manage all customer interaction history
 - **Real-time Updates**: Live updates and smooth animations using Framer Motion
-- **Progressive Web App**: Installable on mobile devices with offline capabilities
-- **Android Support**: Built with Capacitor for native Android deployment
+- **Progressive Web App**: Installable on any device with offline support and native-like experience
+- **Offline First**: Works without internet connection, syncs when back online
 - **Modern UI**: Beautiful, responsive interface with Tailwind CSS and gradient effects
 
 ## 🏗️ Architecture
@@ -22,8 +22,8 @@ A modern, voice-first CRM application that uses AI to transcribe and extract cus
 - **Styling**: Tailwind CSS 4.1.18
 - **Animations**: Framer Motion 11.2.10
 - **Icons**: Lucide React
-- **PWA**: Vite Plugin PWA with Workbox
-- **Mobile**: Capacitor for Android deployment
+- **PWA**: Vite Plugin PWA with Workbox for offline support and caching
+- **Service Worker**: Automatic updates and background sync
 
 ### Backend
 - **Framework**: FastAPI
@@ -99,23 +99,28 @@ The frontend will run on `http://localhost:5173` (or another port if 5173 is occ
 - `python main.py` - Start FastAPI server
 - `pytest` - Run tests (if configured)
 
-## 📱 Building for Android
+## 📱 Installing the PWA
 
-1. Build the frontend:
-```bash
-cd frontend
-npm run build
-```
+### On Desktop (Chrome, Edge, Brave)
 
-2. Sync with Capacitor:
-```bash
-npx cap sync android
-```
+1. Visit the app in your browser
+2. Look for the install icon in the address bar
+3. Click "Install" when prompted
+4. The app will open in its own window
 
-3. Open in Android Studio:
-```bash
-npx cap open android
-```
+### On Mobile (Android)
+
+1. Open the app in Chrome
+2. Tap the menu (three dots)
+3. Select "Add to Home Screen" or "Install App"
+4. The app will be added to your home screen
+
+### On Mobile (iOS/Safari)
+
+1. Open the app in Safari
+2. Tap the Share button
+3. Scroll down and tap "Add to Home Screen"
+4. Tap "Add" to confirm
 
 ## 🗄️ Database Schema
 
@@ -193,8 +198,8 @@ PORT=8000
 - Framer Motion (Animations)
 - Lucide React (Icons)
 - Axios (HTTP client)
-- Capacitor (Mobile deployment)
-- Workbox (PWA/Service Worker)
+- Vite Plugin PWA (Progressive Web App)
+- Workbox (Service Worker/Offline support)
 
 ### Backend Dependencies
 - FastAPI (Web framework)
@@ -209,8 +214,8 @@ PORT=8000
 
 - The application uses a voice-first approach for data entry
 - All customer interactions are stored locally in SQLite
-- The PWA configuration allows offline functionality
-- Android builds are supported through Capacitor
+- The PWA is installable on all platforms (desktop and mobile)
+- Offline functionality with automatic sync when back online
 - The UI features smooth animations and modern design patterns
 
 ## 🤝 Contributing
@@ -238,7 +243,8 @@ This project is licensed under the MIT License.
 - [ ] Export functionality (CSV, PDF)
 - [ ] Email integration
 - [ ] Calendar integration for follow-ups
-- [ ] iOS support via Capacitor
+- [ ] Push notifications
+- [ ] Background sync improvements
 
 ## 📞 Support
 
